@@ -52,7 +52,7 @@ export function RegisterForm() {
 
       toast({
         title: "Registration successful!",
-        description: `Welcome to DevOverflow, ${data.username}!`,
+        description: `Welcome to nextjs-monorepo-template, ${data.username}!`,
       });
 
       // Reset form

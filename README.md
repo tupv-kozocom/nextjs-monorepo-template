@@ -1,4 +1,4 @@
-# 🚀 DevOverflow - Frontend Monorepo
+# 🚀 nextjs-monorepo-template - Frontend Monorepo
 
 > A production-ready **frontend monorepo** with Turborepo, Next.js, Tailwind CSS v4, shadcn/ui, and Zustand. Connects to a separate NestJS backend API.
 

@@ -264,7 +264,7 @@ Thư mục `apps/` chứa các **ứng dụng độc lập** có thể deploy ri
 
 **Mục đích**: Đây là ứng dụng chính của dự án (Production app) - trang web mà người dùng sẽ truy cập.
 
-**Ví dụ trong dự án DevOverflow**:
+**Ví dụ trong dự án nextjs-monorepo-template**:
 
 - Trang Q&A cho developers (giống Stack Overflow)
 - **Frontend React/Next.js app** - Gọi API từ NestJS backend riêng biệt
@@ -1222,7 +1222,7 @@ export function LoginForm() {
 # apps/web/.env.local
 NEXT_PUBLIC_API_URL=http://localhost:4000
 # or
-NEXT_PUBLIC_API_URL=https://api.devoverflow.com
+NEXT_PUBLIC_API_URL=https://api.nextjs-monorepo-template.com
 ```
 
 ### Sharing Schemas với Backend
