@@ -1,135 +1,212 @@
-# Turborepo starter
+# 🚀 DevOverflow - Frontend Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+> A production-ready **frontend monorepo** with Turborepo, Next.js, Tailwind CSS v4, shadcn/ui, and Zustand. Connects to a separate NestJS backend API.
 
-## Using this example
+---
 
-Run the following command:
+## 📚 Full Documentation
 
-```sh
-npx create-turbo@latest
-```
+**👉 [MONOREPO_GUIDE.md](./MONOREPO_GUIDE.md)** - Complete guide from A-Z
 
-## What's inside?
+Covers everything:
 
-This Turborepo includes the following packages/apps:
+- What is Monorepo & Turborepo (for beginners)
+- Project structure explained
+- How to work with packages
+- Design system details
+- Backend integration guide
+- Best practices & troubleshooting
 
-### Apps and Packages
+---
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 🏗️ Architecture
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+┌─────────────────────────────────┐
+│   FRONTEND MONOREPO (This Repo) │
+│   • Next.js Apps                │
+│   • Shared Packages             │
+│   • Design System               │
+└───────────┬─────────────────────┘
+            │ HTTP/REST API
+┌───────────▼─────────────────────┐
+│   BACKEND (Separate Repo)       │
+│   • NestJS API                  │
+│   • Database                    │
+└─────────────────────────────────┘
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+## 🚀 Quick Start
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+### Prerequisites
 
-### Develop
+- Node.js >= 18.0.0
+- pnpm >= 9.0.0
 
-To develop all apps and packages, run the following command:
+### Setup
 
-```
-cd my-turborepo
+```bash
+# Install pnpm
+npm install -g pnpm
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+# Install dependencies
+pnpm install
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+# Run dev mode
+pnpm dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Access
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+- **Main app**: http://localhost:3000
+- **Examples**: http://localhost:3000/examples
+- **Docs**: http://localhost:3001
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+---
 
-### Remote Caching
+## 📋 Common Commands
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+```bash
+# Development
+pnpm dev                          # All apps
+pnpm --filter web dev             # Only web
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+# Build
+pnpm build                        # All
+pnpm --filter web build           # Only web
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+# Code Quality
+pnpm lint                         # Lint
+pnpm check-types                  # TypeScript check
+pnpm format                       # Prettier
 
-```
-cd my-turborepo
+# Add Dependencies
+pnpm --filter web add <package>   # To apps/web
+pnpm add -w <package>             # To workspace root
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Add shadcn Component
+cd apps/web
+pnpm dlx shadcn@latest add <component>
 ```
 
-## Useful Links
+---
 
-Learn more about the power of Turborepo:
+## 🛠 Tech Stack
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Core
+
+- **Turborepo** - Build system with caching
+- **pnpm** - Fast package manager
+- **Next.js 16** - React framework
+- **TypeScript 5.9** - Type safety
+
+### UI
+
+- **Tailwind CSS 4** - Styling (with @theme directive)
+- **shadcn/ui** - Component library
+- **CVA** - Component variants
+
+### Forms & State
+
+- **React Hook Form** - Form management
+- **Zod 4** - Validation
+- **Zustand 5** - State management
+
+---
+
+## 📂 Project Structure
+
+```
+├── apps/
+│   ├── web/              # Main app (Port 3000)
+│   │   ├── components/ui/  # shadcn/ui components
+│   │   └── stores/         # Zustand stores
+│   └── docs/             # Docs site (Port 3001)
+│
+├── packages/
+│   ├── tailwind-config/  # Design system (theme.css)
+│   ├── schemas/          # Zod schemas
+│   ├── typescript-config/
+│   └── eslint-config/
+│
+├── turbo.json
+├── pnpm-workspace.yaml
+└── MONOREPO_GUIDE.md     # 📚 Full guide
+```
+
+**Note**: UI components and stores are app-specific, not shared.
+
+---
+
+## 🎨 Design System
+
+Quick reference (see [MONOREPO_GUIDE.md](./MONOREPO_GUIDE.md#-design-system) for details):
+
+**Colors**: `bg-accent`, `bg-dark-100` to `dark-500`, `bg-light-400` to `light-900`
+
+**Typography**: `text-h1-bold`, `text-h2-bold`, `text-paragraph-regular`, `text-body-medium`, `text-small-regular`, `text-subtle-medium`
+
+**Gradients**: `bg-accent-gradient`, `hover-bg-accent-gradient`
+
+**Font**: Inter (Google Fonts)
+
+---
+
+## 🔌 Backend Integration
+
+```typescript
+// apps/web/.env.local
+NEXT_PUBLIC_API_URL=http://localhost:4000
+
+// apps/web/lib/api-client.ts
+import axios from "axios";
+
+export const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
+
+// Usage
+const response = await apiClient.post("/api/auth/login", data);
+```
+
+**Full guide**: [Backend Integration](./MONOREPO_GUIDE.md#-tích-hợp-với-nestjs-backend)
+
+---
+
+## 🎯 Example Usage
+
+```typescript
+// UI Components (local)
+import { Button } from "@/components/ui/button";
+
+// Validation Schemas (shared)
+import { loginSchema } from "@repo/schemas/auth";
+
+// State (local)
+import { useAuthStore } from "@/stores/auth-store";
+
+// Usage
+const form = useForm({ resolver: zodResolver(loginSchema) });
+const { user, logout } = useAuthStore();
+```
+
+---
+
+## 📖 Learn More
+
+- **[MONOREPO_GUIDE.md](./MONOREPO_GUIDE.md)** - Complete documentation
+- [Turborepo Docs](https://turbo.build/repo/docs)
+- [Next.js Docs](https://nextjs.org/docs)
+- [shadcn/ui](https://ui.shadcn.com/)
+
+---
+
+## 🙏 Built With
+
+[Turborepo](https://turbo.build/) • [Next.js](https://nextjs.org/) • [shadcn/ui](https://ui.shadcn.com/) • [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+**Made with ❤️ by TuPV**
